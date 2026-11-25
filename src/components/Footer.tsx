@@ -113,6 +113,11 @@ export function Footer({ onSelectLeague }: FooterProps) {
                 </a>
               </li>
               <li>
+                <a href="#videos" className="hover:text-[#F4BE0B]">
+                  Vídeos Reais das Camisas
+                </a>
+              </li>
+              <li>
                 <a href="#tabela-medidas" className="hover:text-[#F4BE0B]">
                   Tabela de Medidas Oficial
                 </a>

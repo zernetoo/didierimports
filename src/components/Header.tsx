@@ -328,6 +328,12 @@ export function Header({
             Simulador
           </a>
           <a
+            href="#videos"
+            className="px-2.5 h-full inline-flex items-center text-xs font-semibold whitespace-nowrap text-slate-600 hover:text-[#020F4A] border-b-2 border-transparent"
+          >
+            Vídeos
+          </a>
+          <a
             href="#tabela-medidas"
             className="px-2.5 h-full inline-flex items-center text-xs font-semibold whitespace-nowrap text-slate-600 hover:text-[#020F4A] border-b-2 border-transparent"
           >

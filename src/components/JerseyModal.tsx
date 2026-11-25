@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import {
   CATEGORY_LABELS,
+  COLOR_META,
+  JerseyColor,
   JerseyModel,
   ModelCategory,
   STORE_CONFIG,
@@ -32,7 +34,11 @@ import {
   DEFAULT_PRICING_SETTINGS,
   StorePricingSettings,
 } from '@/types/admin';
-import { CategoryFilter, VersionFilter } from '@/components/CatalogSection';
+import {
+  CategoryFilter,
+  ColorFilter,
+  VersionFilter,
+} from '@/components/CatalogSection';
 
 interface JerseyModalProps {
   team: TeamCatalogItem | null;
@@ -40,6 +46,7 @@ interface JerseyModalProps {
   pricing?: StorePricingSettings;
   initialVersionFilter: VersionFilter;
   initialCategoryFilter: CategoryFilter;
+  initialColorFilter: ColorFilter;
   onClose: () => void;
   onAddToCart: (item: CartItem) => void;
 }
@@ -59,11 +66,13 @@ export function JerseyModal({
   pricing = DEFAULT_PRICING_SETTINGS,
   initialVersionFilter,
   initialCategoryFilter,
+  initialColorFilter,
   onClose,
   onAddToCart,
 }: JerseyModalProps) {
   const [versionTab, setVersionTab] = useState<'all' | 'torcedor' | 'jogador'>('all');
   const [categoryTab, setCategoryTab] = useState<'all' | ModelCategory>('all');
+  const [colorTab, setColorTab] = useState<'all' | JerseyColor>('all');
   const [selectedModelId, setSelectedModelId] = useState<string>('');
   const [angleIdx, setAngleIdx] = useState<number>(0);
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
@@ -98,14 +107,30 @@ export function JerseyModal({
     return Array.from(set);
   }, [models, torcedorModels, jogadorModels, versionTab]);
 
+  // Real colors available inside the active version + category
+  const availableColors = useMemo(() => {
+    const counts = new Map<JerseyColor, number>();
+    models.forEach((m) => {
+      if (versionTab !== 'all' && m.version !== versionTab) return;
+      if (categoryTab !== 'all' && m.category !== categoryTab) return;
+      if (m.color && COLOR_META[m.color]) {
+        counts.set(m.color, (counts.get(m.color) || 0) + 1);
+      }
+    });
+    return Array.from(counts.entries())
+      .map(([color, count]) => ({ color, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [models, versionTab, categoryTab]);
+
   // Filtered list of REAL models shown in the modal
   const visibleModels = useMemo(() => {
     return models.filter((m) => {
       if (versionTab !== 'all' && m.version !== versionTab) return false;
       if (categoryTab !== 'all' && m.category !== categoryTab) return false;
+      if (colorTab !== 'all' && m.color !== colorTab) return false;
       return true;
     });
-  }, [models, versionTab, categoryTab]);
+  }, [models, versionTab, categoryTab, colorTab]);
 
   const activeModel: JerseyModel | null = useMemo(() => {
     return (
@@ -132,6 +157,11 @@ export function JerseyModal({
       models.some((m) => m.category === initialCategoryFilter);
     setCategoryTab(hasCat ? initialCategoryFilter : 'all');
 
+    const hasColor =
+      initialColorFilter !== 'all' &&
+      models.some((m) => m.color === initialColorFilter);
+    setColorTab(hasColor ? initialColorFilter : 'all');
+
     setSize('G');
     setAngleIdx(0);
     setLightboxOpen(false);
@@ -151,7 +181,15 @@ export function JerseyModal({
               : 'Patch Champions League'
     );
     setQuantity(1);
-  }, [team, initialVersionFilter, initialCategoryFilter, models, jogadorModels.length, torcedorModels.length]);
+  }, [
+    team,
+    initialVersionFilter,
+    initialCategoryFilter,
+    initialColorFilter,
+    models,
+    jogadorModels.length,
+    torcedorModels.length,
+  ]);
 
   // Reset angle & disable disallowed personalization whenever the active model changes!
   useEffect(() => {
@@ -172,6 +210,16 @@ export function JerseyModal({
       setCategoryTab('all');
     }
   }, [categoryTab, availableCategories]);
+
+  // If colorTab is no longer present under new version/category, reset to 'all'
+  useEffect(() => {
+    if (
+      colorTab !== 'all' &&
+      !availableColors.some((entry) => entry.color === colorTab)
+    ) {
+      setColorTab('all');
+    }
+  }, [colorTab, availableColors]);
 
   useEffect(() => {
     if (!team) return;
@@ -348,6 +396,56 @@ export function JerseyModal({
               ))}
             </div>
           )}
+
+          {availableColors.length > 1 && (
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+              <span className="text-[11px] font-bold text-slate-500 shrink-0 mr-1">
+                Cor:
+              </span>
+              <button
+                type="button"
+                onClick={() => setColorTab('all')}
+                className={`px-3 py-1 rounded-full text-[11px] font-bold shrink-0 cursor-pointer transition-colors ${
+                  colorTab === 'all'
+                    ? 'bg-[#020F4A] text-white'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:border-[#020F4A]'
+                }`}
+              >
+                Todas
+              </button>
+              {availableColors.map(({ color, count }) => {
+                const meta = COLOR_META[color];
+                const active = colorTab === color;
+                return (
+                  <button
+                    key={color}
+                    type="button"
+                    onClick={() => setColorTab(active ? 'all' : color)}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold shrink-0 cursor-pointer transition-colors border ${
+                      active
+                        ? 'bg-[#020F4A] text-[#F4BE0B] border-[#020F4A]'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-[#020F4A]'
+                    }`}
+                  >
+                    <span
+                      className={`w-3 h-3 rounded-full shrink-0 ${
+                        meta.border ? 'border border-slate-300' : 'border border-black/15'
+                      }`}
+                      style={{ backgroundColor: meta.hex }}
+                    />
+                    <span>{meta.label}</span>
+                    <span
+                      className={`text-[10px] ${
+                        active ? 'text-white/75' : 'text-slate-400'
+                      }`}
+                    >
+                      ({count})
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Scrollable Modal Body */}
@@ -509,6 +607,17 @@ export function JerseyModal({
                           >
                             {m.version === 'jogador' ? 'Jogador' : 'Torcedor'}
                           </span>
+                          {m.color && COLOR_META[m.color] && (
+                            <span
+                              title={`Cor predominante: ${COLOR_META[m.color].label}`}
+                              className={`w-2.5 h-2.5 rounded-full shrink-0 ${
+                                COLOR_META[m.color].border
+                                  ? 'border border-slate-400'
+                                  : 'border border-black/15'
+                              }`}
+                              style={{ backgroundColor: COLOR_META[m.color].hex }}
+                            />
+                          )}
                           <span className="text-[9px] text-slate-500 font-semibold">
                             {m.photos.length} ft
                           </span>
@@ -528,9 +637,24 @@ export function JerseyModal({
               <div className="rounded-2xl bg-[#F4F6FA] border border-slate-200 p-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#B88600]">
-                      {CATEGORY_LABELS[activeModel.category]}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-1.5 mb-0.5">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#B88600]">
+                        {CATEGORY_LABELS[activeModel.category]}
+                      </span>
+                      {activeModel.color && COLOR_META[activeModel.color] && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white border border-slate-200 text-[10px] font-bold text-slate-700">
+                          <span
+                            className={`w-2.5 h-2.5 rounded-full shrink-0 ${
+                              COLOR_META[activeModel.color].border
+                                ? 'border border-slate-400'
+                                : 'border border-black/15'
+                            }`}
+                            style={{ backgroundColor: COLOR_META[activeModel.color].hex }}
+                          />
+                          {COLOR_META[activeModel.color].label}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="font-display text-2xl font-extrabold uppercase text-[#020F4A] leading-tight">
                       {activeModel.title}
                     </h3>

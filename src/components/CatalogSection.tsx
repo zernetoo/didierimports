@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import {
   CATEGORY_LABELS,
+  COLOR_META,
+  JerseyColor,
   LEAGUES,
   ModelCategory,
   STORE_CONFIG,
@@ -23,6 +25,7 @@ import {
 
 export type VersionFilter = 'all' | 'torcedor' | 'jogador';
 export type CategoryFilter = 'all' | ModelCategory;
+export type ColorFilter = 'all' | JerseyColor;
 
 interface CatalogSectionProps {
   searchQuery: string;
@@ -33,6 +36,8 @@ interface CatalogSectionProps {
   onVersionFilterChange: (v: VersionFilter) => void;
   categoryFilter: CategoryFilter;
   onCategoryFilterChange: (c: CategoryFilter) => void;
+  colorFilter: ColorFilter;
+  onColorFilterChange: (c: ColorFilter) => void;
   onSelectTeam: (team: TeamCatalogItem) => void;
 }
 
@@ -58,6 +63,8 @@ export function CatalogSection({
   onVersionFilterChange,
   categoryFilter,
   onCategoryFilterChange,
+  colorFilter,
+  onColorFilterChange,
   onSelectTeam,
 }: CatalogSectionProps) {
   const [sportFilter, setSportFilter] = useState<'all' | 'futebol' | 'nba'>('all');
@@ -91,6 +98,9 @@ export function CatalogSection({
       ) {
         return false;
       }
+      if (colorFilter !== 'all' && !team.colors.includes(colorFilter)) {
+        return false;
+      }
       if (selectedLeague === 'destaques' && !team.featured) return false;
       if (
         selectedLeague !== 'todos' &&
@@ -121,6 +131,7 @@ export function CatalogSection({
     sportFilter,
     versionFilter,
     categoryFilter,
+    colorFilter,
     sortMode,
   ]);
 
@@ -129,6 +140,7 @@ export function CatalogSection({
     sportFilter !== 'all' ||
     versionFilter !== 'all' ||
     categoryFilter !== 'all' ||
+    colorFilter !== 'all' ||
     searchQuery.trim().length > 0;
 
   const displayedTeams = hasAnyFilter
@@ -140,6 +152,7 @@ export function CatalogSection({
     setSportFilter('all');
     onVersionFilterChange('all');
     onCategoryFilterChange('all');
+    onColorFilterChange('all');
     onSearchChange('');
     setVisibleCount(24);
   };
@@ -233,6 +246,56 @@ export function CatalogSection({
                 }`}
               >
                 {cat.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* REAL Jersey Color Filter */}
+      <div>
+        <h3 className="text-xs font-extrabold uppercase tracking-wider text-[#020F4A] mb-2.5">
+          Cor da Camisa
+        </h3>
+        <div className="flex flex-wrap gap-1.5">
+          <button
+            type="button"
+            onClick={() => {
+              onColorFilterChange('all');
+              setMobileFiltersOpen(false);
+            }}
+            className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+              colorFilter === 'all'
+                ? 'bg-[#020F4A] text-[#F4BE0B]'
+                : 'bg-[#F4F6FA] text-slate-700 hover:bg-slate-200/80'
+            }`}
+          >
+            Todas
+          </button>
+          {(Object.keys(COLOR_META) as JerseyColor[]).map((colKey) => {
+            const meta = COLOR_META[colKey];
+            const active = colorFilter === colKey;
+            return (
+              <button
+                key={colKey}
+                type="button"
+                onClick={() => {
+                  onColorFilterChange(colKey);
+                  setMobileFiltersOpen(false);
+                }}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+                  active
+                    ? 'bg-[#020F4A] text-white'
+                    : 'bg-[#F4F6FA] text-slate-700 hover:bg-slate-200/80'
+                }`}
+              >
+                <span
+                  className={`w-3 h-3 rounded-full shrink-0 ${
+                    meta.border ? 'border border-slate-300' : ''
+                  }`}
+                  style={{ backgroundColor: meta.hex }}
+                />
+                {meta.label}
               </button>
             );
           })}

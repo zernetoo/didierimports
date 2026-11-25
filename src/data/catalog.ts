@@ -12,11 +12,40 @@ export type ModelCategory =
   | 'calcao'
   | 'nba';
 
+export type JerseyColor =
+  | 'preta'
+  | 'branca'
+  | 'vermelha'
+  | 'azul'
+  | 'amarela'
+  | 'verde'
+  | 'cinza'
+  | 'laranja'
+  | 'rosa'
+  | 'roxa';
+
+export const COLOR_META: Record<
+  JerseyColor,
+  { label: string; hex: string; border?: boolean }
+> = {
+  preta: { label: 'Preta', hex: '#14161A' },
+  branca: { label: 'Branca', hex: '#FFFFFF', border: true },
+  vermelha: { label: 'Vermelha', hex: '#DC2626' },
+  azul: { label: 'Azul', hex: '#1D4ED8' },
+  amarela: { label: 'Amarela', hex: '#EAB308' },
+  verde: { label: 'Verde', hex: '#15803D' },
+  cinza: { label: 'Cinza / Bege', hex: '#94A3B8' },
+  laranja: { label: 'Laranja', hex: '#EA580C' },
+  rosa: { label: 'Rosa', hex: '#EC4899' },
+  roxa: { label: 'Roxa', hex: '#7E22CE' },
+};
+
 export interface JerseyModel {
   id: string;
   title: string;
   version: 'torcedor' | 'jogador';
   category: ModelCategory;
+  color?: JerseyColor;
   allowsPersonalization: boolean;
   allowsPatch: boolean;
   photos: string[];
@@ -44,6 +73,7 @@ export interface TeamCatalogItem {
   torcedorCount: number;
   jogadorCount: number;
   categories: ModelCategory[];
+  colors: JerseyColor[];
 }
 
 export const CATEGORY_LABELS: Record<ModelCategory, string> = {
@@ -218,6 +248,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -234,6 +272,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "goleiro",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "laranja",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -250,6 +294,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "feminina",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -271,6 +319,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -292,6 +351,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -307,6 +376,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -328,6 +401,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -343,6 +424,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -365,6 +451,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -388,6 +481,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -405,6 +508,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -421,6 +530,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "goleiro",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta"
     ]
   },
   {
@@ -437,6 +553,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "rosa",
+      "verde"
     ]
   },
   {
@@ -454,6 +576,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "feminina",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -470,6 +596,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja"
     ]
   },
   {
@@ -492,6 +624,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -514,6 +655,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -532,6 +684,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "feminina",
       "goleiro",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -548,6 +708,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "goleiro",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -570,6 +735,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde"
     ]
   },
   {
@@ -585,6 +759,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -608,6 +785,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -630,6 +818,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -648,6 +845,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -670,6 +872,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -689,6 +900,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -704,6 +921,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 2,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -722,6 +946,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -741,6 +976,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -762,6 +1003,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa"
     ]
   },
   {
@@ -783,6 +1032,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -804,6 +1062,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -827,6 +1095,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -849,6 +1126,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -864,6 +1148,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -885,6 +1173,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -907,6 +1200,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -925,6 +1229,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -940,6 +1251,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -959,6 +1275,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -976,6 +1302,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "verde"
     ]
   },
   {
@@ -994,6 +1326,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "laranja",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -1010,6 +1349,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "cinza",
+      "verde"
     ]
   },
   {
@@ -1032,6 +1377,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1054,6 +1408,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1074,6 +1435,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1096,6 +1462,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1117,6 +1491,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1136,6 +1516,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "verde"
     ]
   },
   {
@@ -1153,6 +1540,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "casual",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1172,6 +1564,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1192,6 +1589,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1207,6 +1614,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "verde"
     ]
   },
   {
@@ -1227,6 +1639,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1246,6 +1663,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1267,6 +1692,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1285,6 +1717,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -1301,6 +1738,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1324,6 +1766,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -1341,6 +1793,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -1360,6 +1818,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja"
     ]
   },
   {
@@ -1383,6 +1847,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1400,6 +1874,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -1423,6 +1901,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1441,6 +1927,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1458,6 +1951,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -1473,6 +1971,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 2,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -1495,6 +1998,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1512,6 +2023,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -1528,6 +2045,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1546,6 +2067,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "laranja",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1564,6 +2092,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "verde"
     ]
   },
   {
@@ -1586,6 +2120,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -1603,6 +2146,9 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -1619,6 +2165,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -1641,6 +2192,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1663,6 +2222,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -1682,6 +2248,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1697,6 +2271,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 8,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -1719,6 +2301,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1735,6 +2327,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1754,6 +2351,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1769,6 +2374,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1790,6 +2399,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -1812,6 +2428,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1828,6 +2454,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1847,6 +2478,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1864,6 +2501,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -1880,6 +2522,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -1899,6 +2546,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -1916,6 +2569,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "vermelha"
     ]
   },
   {
@@ -1936,6 +2594,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -1955,6 +2622,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -1971,6 +2644,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -1989,6 +2666,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "casual",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja"
     ]
   },
   {
@@ -2005,6 +2688,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -2023,6 +2710,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -2039,6 +2731,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2056,6 +2753,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul"
     ]
   },
   {
@@ -2075,6 +2776,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -2093,6 +2799,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -2115,6 +2828,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2136,6 +2859,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2154,6 +2886,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2172,6 +2912,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -2188,6 +2934,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "cinza",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2206,6 +2958,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "verde"
     ]
   },
   {
@@ -2223,6 +2982,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "vermelha"
     ]
   },
   {
@@ -2239,6 +3002,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2256,6 +3027,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -2278,6 +3056,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -2295,6 +3081,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -2316,6 +3112,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2334,6 +3139,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2356,6 +3171,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2374,6 +3199,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2396,6 +3230,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2412,6 +3255,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -2434,6 +3282,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -2456,6 +3313,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2474,6 +3339,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -2490,6 +3361,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -2513,6 +3388,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2530,6 +3414,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2549,6 +3439,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2565,6 +3464,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "laranja",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -2582,6 +3488,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -2599,6 +3513,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -2615,6 +3536,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -2634,6 +3561,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2650,6 +3587,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -2672,6 +3613,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa"
     ]
   },
   {
@@ -2689,6 +3638,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -2705,6 +3660,15 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2723,6 +3687,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2742,6 +3715,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2758,6 +3740,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -2774,6 +3762,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -2792,6 +3786,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2810,6 +3813,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja"
     ]
   },
   {
@@ -2827,6 +3836,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2849,6 +3864,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2872,6 +3897,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -2893,6 +3928,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2909,6 +3952,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -2926,6 +3977,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2943,6 +4002,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -2963,6 +4029,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2979,6 +4056,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -2996,6 +4081,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3016,6 +4109,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3033,6 +4133,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -3049,6 +4155,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3067,6 +4180,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -3084,6 +4205,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3101,6 +4232,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -3118,6 +4255,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "cinza",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3137,6 +4280,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3154,6 +4308,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3171,6 +4332,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3194,6 +4362,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde"
     ]
   },
   {
@@ -3211,6 +4388,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3229,6 +4416,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3247,6 +4442,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3267,6 +4471,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3285,6 +4496,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3303,6 +4524,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3320,6 +4548,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -3338,6 +4576,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -3355,6 +4603,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "laranja"
     ]
   },
   {
@@ -3373,6 +4626,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -3389,6 +4648,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "vermelha"
     ]
   },
   {
@@ -3406,6 +4668,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3428,6 +4698,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3449,6 +4730,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3469,6 +4759,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3486,6 +4784,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -3502,6 +4806,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "manga-longa"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -3519,6 +4830,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -3536,6 +4854,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3551,6 +4875,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "rosa"
     ]
   },
   {
@@ -3569,6 +4899,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -3585,6 +4922,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "manga-longa"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3601,6 +4945,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -3623,6 +4973,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -3643,6 +5000,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta"
     ]
   },
   {
@@ -3658,6 +5023,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca"
     ]
   },
   {
@@ -3675,6 +5045,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "manga-longa"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -3696,6 +5073,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3711,6 +5097,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "verde"
     ]
   },
   {
@@ -3728,6 +5120,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "branca",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3748,6 +5146,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -3763,6 +5169,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3778,6 +5189,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "retro"
+    ],
+    "colors": [
+      "vermelha"
     ]
   },
   {
@@ -3795,6 +5209,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -3810,6 +5231,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "retro"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -3825,6 +5249,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "retro"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -3840,6 +5267,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca"
     ]
   },
   {
@@ -3855,6 +5287,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3870,6 +5307,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3887,6 +5330,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -3908,6 +5356,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -3928,6 +5384,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -3944,6 +5410,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -3961,6 +5433,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -3977,6 +5459,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -3993,6 +5482,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -4009,6 +5503,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -4026,6 +5528,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4041,6 +5551,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 1,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -4057,6 +5571,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4073,6 +5593,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca"
     ]
   },
   {
@@ -4094,6 +5619,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -4111,6 +5647,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "verde"
     ]
   },
   {
@@ -4127,6 +5669,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "cinza"
     ]
   },
   {
@@ -4143,6 +5689,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "rosa",
+      "roxa"
     ]
   },
   {
@@ -4159,6 +5712,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "vermelha"
     ]
   },
   {
@@ -4181,6 +5738,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -4199,6 +5766,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -4220,6 +5795,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "verde"
     ]
   },
   {
@@ -4240,6 +5825,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -4257,6 +5850,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4276,6 +5878,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -4293,6 +5903,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4311,6 +5927,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4326,6 +5949,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -4344,6 +5972,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -4360,6 +5994,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "rosa"
     ]
   },
   {
@@ -4380,6 +6020,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -4399,6 +6047,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -4417,6 +6072,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -4435,6 +6099,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -4452,6 +6125,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -4470,6 +6152,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -4486,6 +6174,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4501,6 +6197,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -4522,6 +6224,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "manga-longa"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -4540,6 +6252,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -4560,6 +6278,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "verde"
     ]
   },
   {
@@ -4577,6 +6301,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "casual",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -4593,6 +6323,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "preta",
+      "roxa"
     ]
   },
   {
@@ -4610,6 +6345,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -4629,6 +6368,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "roxa"
     ]
   },
   {
@@ -4648,6 +6393,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -4665,6 +6418,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -4681,6 +6439,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -4699,6 +6463,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "laranja",
+      "preta"
     ]
   },
   {
@@ -4719,6 +6488,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -4735,6 +6512,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "roxa"
     ]
   },
   {
@@ -4751,6 +6534,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "cinza"
     ]
   },
   {
@@ -4767,6 +6554,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -4784,6 +6576,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "casual",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "cinza",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -4800,6 +6598,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -4816,6 +6619,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -4832,6 +6641,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -4849,6 +6664,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "casual",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -4865,6 +6684,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "cinza"
     ]
   },
   {
@@ -4881,6 +6704,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -4898,6 +6726,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -4915,6 +6749,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "laranja",
+      "preta",
+      "roxa",
+      "vermelha"
     ]
   },
   {
@@ -4933,6 +6774,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -4949,6 +6796,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -4965,6 +6817,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -4982,6 +6839,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -4999,6 +6861,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -5021,6 +6889,17 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5042,6 +6921,16 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5062,6 +6951,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5084,6 +6982,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5104,6 +7010,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5124,6 +7039,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5146,6 +7070,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -5163,6 +7095,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5180,6 +7120,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5196,6 +7144,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -5214,6 +7167,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -5235,6 +7195,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5252,6 +7219,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "goleiro",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "verde"
     ]
   },
   {
@@ -5274,6 +7248,15 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "roxa",
+      "verde"
     ]
   },
   {
@@ -5291,6 +7274,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "manga-longa"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "verde"
     ]
   },
   {
@@ -5308,6 +7299,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "casual",
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -5328,6 +7325,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -5348,6 +7351,14 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -5364,6 +7375,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -5380,6 +7395,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -5398,6 +7418,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -5413,6 +7439,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -5428,6 +7457,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -5446,6 +7481,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -5466,6 +7507,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "manga-longa",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -5483,6 +7530,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5500,6 +7554,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "retro",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -5515,6 +7574,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -5530,6 +7594,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -5545,6 +7613,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -5560,6 +7631,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -5580,6 +7657,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5601,6 +7685,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -5620,6 +7711,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "roxa"
     ]
   },
   {
@@ -5641,6 +7739,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "jogo",
       "manga-longa",
       "treino"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -5658,6 +7763,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "infantil",
       "jogo",
       "treino"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -5674,6 +7786,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5690,6 +7807,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5706,6 +7828,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5721,6 +7849,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 0,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5737,6 +7871,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "casual",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -5753,6 +7893,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "calcao",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -5769,6 +7916,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "calcao",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -5785,6 +7939,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "calcao",
       "jogo"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "rosa",
+      "vermelha"
     ]
   },
   {
@@ -5800,6 +7961,9 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 1,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "azul"
     ]
   },
   {
@@ -5815,6 +7979,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "jogadorCount": 2,
     "categories": [
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "laranja"
     ]
   },
   {
@@ -5831,6 +8001,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "amarela",
+      "azul"
     ]
   },
   {
@@ -5847,6 +8021,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "infantil",
       "jogo"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "roxa",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5863,6 +8044,14 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde",
+      "vermelha"
     ]
   },
   {
@@ -5879,6 +8068,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "jogo",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "cinza",
+      "laranja"
     ]
   },
   {
@@ -5895,6 +8090,12 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "cinza",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -5912,6 +8113,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -5929,6 +8137,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "preta"
     ]
   },
   {
@@ -5945,6 +8159,10 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "calcao",
       "nba"
+    ],
+    "colors": [
+      "azul",
+      "branca"
     ]
   },
   {
@@ -5962,6 +8180,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -5979,6 +8203,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "laranja",
+      "vermelha"
     ]
   },
   {
@@ -5996,6 +8226,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6013,6 +8248,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6030,6 +8271,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6047,6 +8294,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "verde"
     ]
   },
   {
@@ -6064,6 +8317,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6081,6 +8340,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -6098,6 +8362,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -6115,6 +8384,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6132,6 +8406,10 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -6149,6 +8427,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6166,6 +8449,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -6183,6 +8471,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6200,6 +8493,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6217,6 +8515,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "cinza",
+      "vermelha"
     ]
   },
   {
@@ -6234,6 +8538,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "preta",
+      "roxa"
     ]
   },
   {
@@ -6251,6 +8562,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6268,6 +8585,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6284,6 +8606,11 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "vermelha"
     ]
   },
   {
@@ -6301,6 +8628,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6318,6 +8651,12 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6334,6 +8673,13 @@ export const TEAMS: TeamCatalogItem[] = [
     "categories": [
       "nba",
       "retro"
+    ],
+    "colors": [
+      "branca",
+      "cinza",
+      "laranja",
+      "preta",
+      "vermelha"
     ]
   },
   {
@@ -6351,6 +8697,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6368,6 +8719,11 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "azul",
+      "branca",
+      "preta"
     ]
   },
   {
@@ -6385,6 +8741,13 @@ export const TEAMS: TeamCatalogItem[] = [
       "calcao",
       "nba",
       "retro"
+    ],
+    "colors": [
+      "amarela",
+      "azul",
+      "branca",
+      "roxa",
+      "verde"
     ]
   }
 ];

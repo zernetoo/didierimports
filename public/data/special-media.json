@@ -55,5 +55,77 @@
     "/media/exemplos/exemplo-14.jpg",
     "/media/exemplos/exemplo-15.jpg",
     "/media/exemplos/exemplo-16.jpg"
+  ],
+  "videos": [
+    {
+      "id": "vid-01",
+      "title": "Detalhes Reais do Manto #1",
+      "category": "Futebol",
+      "src": "/media/videos/video-01.mp4",
+      "poster": "/media/produtos/produto-01.jpg"
+    },
+    {
+      "id": "vid-02",
+      "title": "Detalhes Reais do Manto #2",
+      "category": "Futebol",
+      "src": "/media/videos/video-02.mp4",
+      "poster": "/media/produtos/produto-02.jpg"
+    },
+    {
+      "id": "vid-03",
+      "title": "Detalhes Reais do Manto #3",
+      "category": "Futebol",
+      "src": "/media/videos/video-03.mp4",
+      "poster": "/media/produtos/produto-03.jpg"
+    },
+    {
+      "id": "vid-04",
+      "title": "Detalhes Reais do Manto #4",
+      "category": "Futebol",
+      "src": "/media/videos/video-04.mp4",
+      "poster": "/media/produtos/produto-04.jpg"
+    },
+    {
+      "id": "vid-05",
+      "title": "Detalhes Reais do Manto #5",
+      "category": "Futebol",
+      "src": "/media/videos/video-05.mp4",
+      "poster": "/media/produtos/produto-05.jpg"
+    },
+    {
+      "id": "vid-06",
+      "title": "Detalhes Reais do Manto #6",
+      "category": "Futebol",
+      "src": "/media/videos/video-06.mp4",
+      "poster": "/media/produtos/produto-06.jpg"
+    },
+    {
+      "id": "vid-07",
+      "title": "Detalhes Reais do Manto #7",
+      "category": "Futebol",
+      "src": "/media/videos/video-07.mp4",
+      "poster": "/media/produtos/produto-07.jpg"
+    },
+    {
+      "id": "vid-08",
+      "title": "Detalhes Reais do Manto #8",
+      "category": "Futebol",
+      "src": "/media/videos/video-08.mp4",
+      "poster": "/media/produtos/produto-08.jpg"
+    },
+    {
+      "id": "nba-01",
+      "title": "Regatas NBA — Acabamento Real",
+      "category": "NBA & Variados",
+      "src": "/media/videos/nba-01.mp4",
+      "poster": "/banners/hero-nba.jpg"
+    },
+    {
+      "id": "nba-02",
+      "title": "Modelos Variados — Qualidade Real",
+      "category": "NBA & Variados",
+      "src": "/media/videos/nba-02.mp4",
+      "poster": "/banners/hero-nba.jpg"
+    }
   ]
 }

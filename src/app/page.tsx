@@ -20,6 +20,7 @@ import { LeagueCarousel } from '@/components/LeagueCarousel';
 import {
   CatalogSection,
   CategoryFilter,
+  ColorFilter,
   VersionFilter,
 } from '@/components/CatalogSection';
 import { JerseySimulator } from '@/components/JerseySimulator';
@@ -37,6 +38,7 @@ const EMPTY_MEDIA: SpecialMediaManifest = {
   medidas: [],
   produtos: [],
   exemplos: [],
+  videos: [],
 };
 
 export default function HomePage() {
@@ -44,6 +46,7 @@ export default function HomePage() {
   const [selectedLeague, setSelectedLeague] = useState('todos');
   const [versionFilter, setVersionFilter] = useState<VersionFilter>('all');
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
+  const [colorFilter, setColorFilter] = useState<ColorFilter>('all');
   const [activeTeam, setActiveTeam] = useState<TeamCatalogItem | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
   const [ordersOpen, setOrdersOpen] = useState(false);
@@ -192,6 +195,8 @@ export default function HomePage() {
           onVersionFilterChange={setVersionFilter}
           categoryFilter={categoryFilter}
           onCategoryFilterChange={setCategoryFilter}
+          colorFilter={colorFilter}
+          onColorFilterChange={setColorFilter}
           onSelectTeam={(team) => setActiveTeam(team)}
         />
 
@@ -211,6 +216,7 @@ export default function HomePage() {
         pricing={pricing}
         initialVersionFilter={versionFilter}
         initialCategoryFilter={categoryFilter}
+        initialColorFilter={colorFilter}
         onClose={() => setActiveTeam(null)}
         onAddToCart={handleAddToCart}
       />
