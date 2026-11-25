@@ -1,0 +1,59 @@
+{
+  "top10": [
+    "/media/top10/top-01.jpg",
+    "/media/top10/top-02.jpg",
+    "/media/top10/top-03.jpg",
+    "/media/top10/top-04.jpg",
+    "/media/top10/top-05.jpg",
+    "/media/top10/top-06.jpg",
+    "/media/top10/top-07.jpg",
+    "/media/top10/top-08.jpg",
+    "/media/top10/top-09.jpg",
+    "/media/top10/top-10.jpg",
+    "/media/top10/top-11.jpg",
+    "/media/top10/top-12.jpg",
+    "/media/top10/top-13.jpg",
+    "/media/top10/top-14.jpg",
+    "/media/top10/top-15.jpg",
+    "/media/top10/top-16.jpg"
+  ],
+  "medidas": [
+    "/media/medidas/medida-01.jpg",
+    "/media/medidas/medida-02.jpg",
+    "/media/medidas/medida-03.jpg",
+    "/media/medidas/medida-04.jpg",
+    "/media/medidas/medida-05.jpg",
+    "/media/medidas/medida-06.jpg",
+    "/media/medidas/medida-07.jpg",
+    "/media/medidas/medida-08.jpg",
+    "/media/medidas/medida-09.jpg"
+  ],
+  "produtos": [
+    "/media/produtos/produto-01.jpg",
+    "/media/produtos/produto-02.jpg",
+    "/media/produtos/produto-03.jpg",
+    "/media/produtos/produto-04.jpg",
+    "/media/produtos/produto-05.jpg",
+    "/media/produtos/produto-06.jpg",
+    "/media/produtos/produto-07.jpg",
+    "/media/produtos/produto-08.jpg"
+  ],
+  "exemplos": [
+    "/media/exemplos/exemplo-01.jpg",
+    "/media/exemplos/exemplo-02.jpg",
+    "/media/exemplos/exemplo-03.jpg",
+    "/media/exemplos/exemplo-04.jpg",
+    "/media/exemplos/exemplo-05.jpg",
+    "/media/exemplos/exemplo-06.jpg",
+    "/media/exemplos/exemplo-07.jpg",
+    "/media/exemplos/exemplo-08.jpg",
+    "/media/exemplos/exemplo-09.jpg",
+    "/media/exemplos/exemplo-10.jpg",
+    "/media/exemplos/exemplo-11.jpg",
+    "/media/exemplos/exemplo-12.jpg",
+    "/media/exemplos/exemplo-13.jpg",
+    "/media/exemplos/exemplo-14.jpg",
+    "/media/exemplos/exemplo-15.jpg",
+    "/media/exemplos/exemplo-16.jpg"
+  ]
+}
