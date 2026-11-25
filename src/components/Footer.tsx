@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { MessageCircle, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { MessageCircle, Mail, Lock } from 'lucide-react';
 import { LEAGUES, STORE_CONFIG } from '@/data/catalog';
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -172,8 +173,19 @@ export function Footer({ onSelectLeague }: FooterProps) {
           </div>
         </div>
 
-        <div className="bg-[#03092B] border-t border-white/10 py-4 text-center text-xs text-white/55 px-4">
-          © {new Date().getFullYear()} DIDIER IMPORTS — Todos os direitos reservados. Pedidos sob encomenda.
+        <div className="bg-[#03092B] border-t border-white/10 py-4 px-4">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs text-white/55">
+            <span>
+              © {new Date().getFullYear()} DIDIER IMPORTS — Todos os direitos reservados. Pedidos sob encomenda.
+            </span>
+            <Link
+              href="/admin"
+              className="inline-flex items-center gap-1.5 text-white/60 hover:text-[#F4BE0B] font-semibold transition-colors"
+            >
+              <Lock className="w-3 h-3" />
+              Painel do Vendedor
+            </Link>
+          </div>
         </div>
       </footer>
 

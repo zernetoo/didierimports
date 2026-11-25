@@ -1,9 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { JerseyModel, TeamCatalogItem } from '@/data/catalog';
 import { CartItem, SavedOrder } from '@/types/store';
+import {
+  CustomModelRecord,
+  DEFAULT_PRICING_SETTINGS,
+  StorePricingSettings,
+} from '@/types/admin';
+import {
+  loadCustomModels,
+  loadHiddenModels,
+  loadPricingSettings,
+} from '@/lib/store-db';
 import { Header } from '@/components/Header';
 import { HeroBanner } from '@/components/HeroBanner';
 import { LeagueCarousel } from '@/components/LeagueCarousel';
@@ -46,7 +56,13 @@ export default function HomePage() {
   const [specialMedia, setSpecialMedia] =
     useState<SpecialMediaManifest>(EMPTY_MEDIA);
 
-  // Hydrate persisted cart & orders + load structured real team models
+  // Live seller settings from /admin
+  const [pricing, setPricing] = useState<StorePricingSettings>(
+    DEFAULT_PRICING_SETTINGS
+  );
+  const [customModels, setCustomModels] = useState<CustomModelRecord[]>([]);
+  const [hiddenModels, setHiddenModels] = useState<string[]>([]);
+
   useEffect(() => {
     try {
       const rawCart = localStorage.getItem(CART_STORAGE_KEY);
@@ -56,6 +72,10 @@ export default function HomePage() {
     } catch {
       // Ignore storage errors
     }
+
+    setPricing(loadPricingSettings());
+    setCustomModels(loadCustomModels());
+    setHiddenModels(loadHiddenModels());
 
     fetch('/data/team-models.json')
       .then((r) => (r.ok ? r.json() : {}))
@@ -83,6 +103,19 @@ export default function HomePage() {
       // Ignore storage errors
     }
   }, [orders]);
+
+  // Merge custom seller-added models and filter out seller-paused models for the active team
+  const activeTeamModels = useMemo(() => {
+    if (!activeTeam) return [];
+    const base = teamModelsMap[activeTeam.id] || [];
+    const added = customModels
+      .filter((c) => c.teamId === activeTeam.id)
+      .map((c) => c.model);
+    const hiddenSet = new Set(hiddenModels);
+    return [...added, ...base].filter(
+      (m) => !hiddenSet.has(`${activeTeam.id}:${m.id}`)
+    );
+  }, [activeTeam, teamModelsMap, customModels, hiddenModels]);
 
   const showToast = (msg: string) => {
     setToast(msg);
@@ -174,7 +207,8 @@ export default function HomePage() {
 
       <JerseyModal
         team={activeTeam}
-        models={activeTeam ? teamModelsMap[activeTeam.id] || [] : []}
+        models={activeTeamModels}
+        pricing={pricing}
         initialVersionFilter={versionFilter}
         initialCategoryFilter={categoryFilter}
         onClose={() => setActiveTeam(null)}

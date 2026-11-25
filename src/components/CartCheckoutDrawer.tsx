@@ -14,8 +14,10 @@ import {
   MessageCircle,
   Loader2,
   AlertCircle,
+  Tag,
 } from 'lucide-react';
 import { STORE_CONFIG } from '@/data/catalog';
+import { recordStorefrontOrder, validateCoupon } from '@/lib/store-db';
 import {
   CartItem,
   CustomerOrderData,
@@ -62,10 +64,28 @@ export function CartCheckoutDrawer({
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [completedOrder, setCompletedOrder] = useState<SavedOrder | null>(null);
+  const [couponInput, setCouponInput] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<{
+    code: string;
+    discount: number;
+  } | null>(null);
+  const [couponMsg, setCouponMsg] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const subtotal = items.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0);
+  const discountAmount = appliedCoupon ? Math.min(subtotal, appliedCoupon.discount) : 0;
+  const finalTotal = Math.max(0, subtotal - discountAmount);
+
+  const handleApplyCoupon = () => {
+    const res = validateCoupon(couponInput, subtotal);
+    setCouponMsg(res.message);
+    if (res.valid && res.coupon) {
+      setAppliedCoupon({ code: res.coupon.code, discount: res.discount });
+    } else {
+      setAppliedCoupon(null);
+    }
+  };
 
   const handleClose = () => {
     if (step === 'success') {
@@ -83,7 +103,7 @@ export function CartCheckoutDrawer({
     setErrorMsg(null);
 
     const orderId = `DI-${Date.now().toString().slice(-6)}`;
-    const total = subtotal;
+    const total = finalTotal;
 
     const itensResumo = items
       .map((item, idx) => {
@@ -118,6 +138,9 @@ export function CartCheckoutDrawer({
       Pedido: `#${orderId}`,
       Data_Hora: new Date().toLocaleString('pt-BR'),
       Valor_Total: formatBRL(total),
+      Cupom_Aplicado: appliedCoupon
+        ? `${appliedCoupon.code} (-${formatBRL(discountAmount)})`
+        : 'Nenhum',
       Cliente_Nome: customer.fullName,
       Cliente_WhatsApp: customer.whatsapp,
       Cliente_Email: customer.email || 'Não informado',
@@ -160,10 +183,18 @@ export function CartCheckoutDrawer({
       emailDispatched,
     };
 
+    recordStorefrontOrder(
+      savedOrder,
+      discountAmount,
+      appliedCoupon?.code || ''
+    );
     onOrderSaved(savedOrder);
     onClearCart();
     setCompletedOrder(savedOrder);
     setCustomer(INITIAL_CUSTOMER);
+    setAppliedCoupon(null);
+    setCouponInput('');
+    setCouponMsg(null);
     setSubmitting(false);
     setStep('success');
   };
@@ -347,12 +378,51 @@ export function CartCheckoutDrawer({
 
             {items.length > 0 && (
               <div className="border-t border-slate-200 p-5 bg-[#F4F6FA] space-y-3 shrink-0">
+                {/* Discount Coupon Input */}
+                <div className="space-y-1.5">
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <Tag className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                      <input
+                        type="text"
+                        value={couponInput}
+                        onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
+                        placeholder="Cupom de desconto (ex: DIDIER10)"
+                        className="w-full h-9 pl-8 pr-3 rounded-full border border-slate-300 bg-white text-xs font-bold uppercase focus:outline-none focus:border-[#020F4A]"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleApplyCoupon}
+                      className="px-4 h-9 rounded-full bg-[#020F4A] hover:bg-[#0A1F7A] text-white text-xs font-extrabold uppercase cursor-pointer"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                  {couponMsg && (
+                    <p
+                      className={`text-[11px] font-bold px-2 ${
+                        appliedCoupon ? 'text-emerald-700' : 'text-red-600'
+                      }`}
+                    >
+                      {couponMsg}
+                    </p>
+                  )}
+                </div>
+
+                {discountAmount > 0 && (
+                  <div className="flex items-center justify-between text-xs font-bold text-emerald-700">
+                    <span>Desconto ({appliedCoupon?.code})</span>
+                    <span>- {formatBRL(discountAmount)}</span>
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-semibold text-slate-600">
                     Total da Encomenda
                   </span>
                   <span className="font-display text-3xl font-extrabold text-[#020F4A]">
-                    {formatBRL(subtotal)}
+                    {formatBRL(finalTotal)}
                   </span>
                 </div>
                 <button
@@ -567,7 +637,7 @@ export function CartCheckoutDrawer({
                   Total ({items.reduce((a, b) => a + b.quantity, 0)} peça(s))
                 </span>
                 <span className="font-display text-3xl font-extrabold text-[#020F4A]">
-                  {formatBRL(subtotal)}
+                  {formatBRL(finalTotal)}
                 </span>
               </div>
 

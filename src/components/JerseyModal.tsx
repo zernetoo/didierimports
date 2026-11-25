@@ -26,14 +26,18 @@ import {
 } from '@/data/catalog';
 import {
   CartItem,
-  calculateUnitPrice,
   formatBRL,
 } from '@/types/store';
+import {
+  DEFAULT_PRICING_SETTINGS,
+  StorePricingSettings,
+} from '@/types/admin';
 import { CategoryFilter, VersionFilter } from '@/components/CatalogSection';
 
 interface JerseyModalProps {
   team: TeamCatalogItem | null;
   models: JerseyModel[];
+  pricing?: StorePricingSettings;
   initialVersionFilter: VersionFilter;
   initialCategoryFilter: CategoryFilter;
   onClose: () => void;
@@ -52,6 +56,7 @@ const PATCH_PRESETS = [
 export function JerseyModal({
   team,
   models,
+  pricing = DEFAULT_PRICING_SETTINGS,
   initialVersionFilter,
   initialCategoryFilter,
   onClose,
@@ -186,11 +191,10 @@ export function JerseyModal({
   const canPersonalize = Boolean(activeModel?.allowsPersonalization);
   const canPatch = Boolean(activeModel?.allowsPatch);
 
-  const unitPrice = calculateUnitPrice(
-    effectiveVersion,
-    canPersonalize && hasPersonalization,
-    canPatch && hasPatch
-  );
+  const unitPrice =
+    (effectiveVersion === 'jogador' ? pricing.jogador : pricing.torcedor) +
+    (canPersonalize && hasPersonalization ? pricing.personalizacao : 0) +
+    (canPatch && hasPatch ? pricing.patch : 0);
   const totalPrice = unitPrice * quantity;
 
   const modelPhotos = activeModel?.photos || [];
@@ -293,7 +297,7 @@ export function JerseyModal({
                     : 'bg-white text-slate-700 border border-slate-200 hover:border-[#020F4A]'
                 }`}
               >
-                {team.sport === 'nba' ? 'Regatas NBA' : 'Versão Torcedor'} • R$ 160 ({torcedorModels.length})
+                {team.sport === 'nba' ? 'Regatas NBA' : 'Versão Torcedor'} • R$ {pricing.torcedor} ({torcedorModels.length})
               </button>
             )}
 
@@ -307,7 +311,7 @@ export function JerseyModal({
                     : 'bg-white text-[#020F4A] border border-[#DFA902]/60 hover:bg-amber-50'
                 }`}
               >
-                Versão Jogador • R$ 200 ({jogadorModels.length})
+                Versão Jogador • R$ {pricing.jogador} ({jogadorModels.length})
               </button>
             )}
           </div>
@@ -538,7 +542,7 @@ export function JerseyModal({
                         : 'bg-[#020F4A] text-white'
                     }`}
                   >
-                    {effectiveVersion === 'jogador' ? 'R$ 200' : 'R$ 160'}
+                    {effectiveVersion === 'jogador' ? `R$ ${pricing.jogador}` : `R$ ${pricing.torcedor}`}
                   </span>
                 </div>
 
@@ -639,7 +643,7 @@ export function JerseyModal({
                       </div>
                     </div>
                     <span className="font-display text-lg font-extrabold text-[#020F4A] bg-[#F4BE0B]/25 px-2.5 py-0.5 rounded-full shrink-0">
-                      + R$ 30
+                      + R$ {pricing.personalizacao}
                     </span>
                   </label>
 
@@ -705,7 +709,7 @@ export function JerseyModal({
                         </div>
                       </div>
                       <span className="font-display text-lg font-extrabold text-[#020F4A] bg-[#F4BE0B]/25 px-2.5 py-0.5 rounded-full shrink-0">
-                        + R$ 20
+                        + R$ {pricing.patch}
                       </span>
                     </label>
 
